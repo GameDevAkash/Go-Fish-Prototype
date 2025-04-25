@@ -397,6 +397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 447601289}
+  - component: {fileID: 447601290}
   m_Layer: 0
   m_Name: CardAnimator
   m_TagString: Untagged
@@ -419,6 +420,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &447601290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447601288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55621c845e4d9c4b87dcf50002c8624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardPrefab: {fileID: 6584050322689592131, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+  DisplayingCards: []
+  OnAllAnimationsFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2011470821}
+        m_TargetAssemblyTypeName: GoFish.Game, Assembly-CSharp
+        m_MethodName: AllAnimationsFinished
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &476035110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,6 +1136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2011470820}
+  - component: {fileID: 2011470821}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1128,6 +1159,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2011470821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011470819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f1d9eeb1545c64e8f5413d7021a130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MessageText: {fileID: 47256340}
+  gameDataManager:
+    protectedData:
+      poolOfCards: 
+      player1Cards: 
+      player2Cards: 
+      numberOfBooksForPlayer1: 0
+      numberOfBooksForPlayer2: 0
+      player1Id: 
+      player2Id: 
+  PlayerPositions:
+  - {fileID: 1138894657}
+  - {fileID: 906234586}
+  BookPositions:
+  - {fileID: 795238880}
+  - {fileID: 387430336}
+  gameState: 0
 --- !u!1 &2076903688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1355,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3210198100828148177
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504895305121745961, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584050322689592131, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_Name
+      value: Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584050322689592131, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c426ddea896f0a249ba55a5c89eea38a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1311,3 +1432,4 @@ SceneRoots:
   - {fileID: 906234586}
   - {fileID: 795238880}
   - {fileID: 387430336}
+  - {fileID: 3210198100828148177}
