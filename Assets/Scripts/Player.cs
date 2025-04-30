@@ -45,7 +45,7 @@ namespace GoFish
             {
                 Card card = DisplayingCards[index];
                 card.SetCardValue(values[index]);
-                card.SetDisplayingOrder(index);
+                card.SetDisplayingOrder(index + 1);
             }
         }
 

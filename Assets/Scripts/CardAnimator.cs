@@ -66,6 +66,11 @@ namespace GoFish
 
         void Start()
         {
+            
+        }
+
+        private void Awake()
+        {
             cardAnimations = new Queue<CardAnimation>();
             InitializeDeck();
         }
@@ -80,7 +85,7 @@ namespace GoFish
                 GameObject newGameObject = Instantiate(CardPrefab, newPosition, Quaternion.identity);
                 newGameObject.transform.parent = transform;
                 Card card = newGameObject.GetComponent<Card>();
-                card.SetDisplayingOrder(1);
+                card.SetDisplayingOrder(value);
                 card.transform.position = newPosition;
                 DisplayingCards.Add(card);
             }
@@ -90,11 +95,13 @@ namespace GoFish
         {
             int start = DisplayingCards.Count - 1;
             int finish = DisplayingCards.Count - 1 - numberOfCard;
-
+            Debug.Log(DisplayingCards.Count);
             List<Card> cardsToRemoveFromDeck = new List<Card>();
 
             for (int i = start; i > finish; i--)
             {
+                Debug.Log(i);
+                Debug.Log(DisplayingCards[i] == null);
                 Card card = DisplayingCards[i];
                 player.ReceiveDisplayingCard(card);
                 cardsToRemoveFromDeck.Add(card);

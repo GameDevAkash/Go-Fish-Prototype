@@ -10,6 +10,7 @@ namespace GoFish
 {
     public class Game : MonoBehaviour
     {
+        public static Game Instance;
         public TextMeshProUGUI MessageText;
 
         CardAnimator cardAnimator;
@@ -45,6 +46,7 @@ namespace GoFish
 
         private void Awake()
         {
+            Instance = this;
             localPlayer = new Player();
             localPlayer.PlayerId = "offline-player";
             localPlayer.PlayerName = "Player";
