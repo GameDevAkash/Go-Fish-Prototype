@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gofish_logo_0: -6610685312551089665
+      gofish_logo_1: 1044739059724509341
+      gofish_logo_2: -6408311827769419593
+      gofish_logo_3: 3194153104876997892
+      gofish_logo_4: 7047340627591078956
+      gofish_logo_5: -8022676864419267330
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
