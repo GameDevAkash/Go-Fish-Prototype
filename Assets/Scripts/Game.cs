@@ -378,3 +378,120 @@ namespace GoFish
         }
     }
 }
+
+/*
+?? Game.cs — Script Documentation
+Namespace: GoFish
+Purpose:
+This script is the main game controller that manages the state of the game, player turns, input, card transfers, and messages shown to the player. It acts as the state machine driving the turn-based flow of the Go Fish card game.
+
+?? Class Overview
+public class Game : MonoBehaviour
+This class uses Unity’s MonoBehaviour and is attached to a GameObject in the scene. It controls everything that happens from the moment the game starts to the end result (win/loss).
+
+?? Fields & Members
+Type	Name	Description
+TextMeshProUGUI	MessageText	UI element for displaying in-game messages.
+CardAnimator	cardAnimator	Reference to the animation controller for card movement.
+GameDataManager	gameDataManager	Manages logical card data and rule enforcement.
+List<Transform>	PlayerPositions, BookPositions	Positions in the scene for players and their books.
+Player	localPlayer, remotePlayer	The two players in the game — one human, one bot.
+Player	currentTurnPlayer, currentTurnTargetPlayer	Whose turn it is, and who they are asking.
+Card	selectedCard	The card selected by the player on their turn.
+Ranks	selectedRank	The rank chosen by the player to ask about.
+
+?? Game States
+public enum GameState
+A finite state machine controls game progression:
+
+State	Description
+Idel	Initial state before game starts
+GameStarted	Initial setup: shuffling and dealing
+TurnStarted	Beginning of a player’s turn
+TurnSelectingNumber	Player picks a rank to request
+TurnConfirmedSelectedNumber	After selection, waiting for confirmation
+TurnWaitingForOpponentConfirmation	Waiting for the opponent’s response
+TurnOpponentConfirmed	Opponent has responded
+TurnGoFish	No matching cards — draw from deck
+GameFinished	Game over
+
+?? Key Methods
+void Awake()
+Initializes players and positions.
+
+Creates AI and local players.
+
+Sets references to CardAnimator.
+
+void Start()
+Starts the game loop with GameStarted state.
+
+Calls GameFlow() to kick off the logic.
+
+void GameFlow()
+The heart of the game. A switch-case handler that:
+
+Checks for books
+
+Evaluates win conditions
+
+Runs methods based on the current game state
+
+?? Turn Phases
+Each game state triggers a method:
+
+Method	Purpose
+OnGameStarted()	Initializes players, shuffles deck, deals cards
+OnTurnStarted()	Switches turns and transitions to card selection
+OnTurnSelectingNumber()	Waits for player or AI to select a rank
+OnTurnConfirmedSelectedNumber()	Announces the request
+OnTurnWaitingForOpponentConfirmation()	Handles delay or bot auto-response
+OnTurnOpponentConfirmed()	Transfers cards or triggers "Go Fish"
+OnTurnGoFish()	Draws a card if no match found
+OnGameFinished()	Announces winner
+
+?? Helper Methods
+Method	Purpose
+ResetSelectedCard()	Deselects a previously selected card
+SetMessage(string msg)	Updates the message UI
+SwitchTurn()	Alternates between players
+CheckPlayersBooks()	Validates if any books are formed
+ShowAndHidePlayersDisplayingCards()	Reveals local cards, hides bot cards
+PlayerShowBooksIfNecessary(Player)	Displays collected sets of 4 cards
+
+?? Input Handling
+OnCardSelected(Card card)
+Triggered when the player clicks a card.
+
+Highlights the card and sets selectedRank.
+
+OnOkSelected()
+Confirms the player’s choice.
+
+Triggers the request logic or opponent response.
+
+?? Animation Event Handling
+AllAnimationsFinished()
+Triggered when CardAnimator completes all animations.
+
+Re-enters GameFlow() to continue the turn.
+
+?? Teaching Tips
+Think of this class as a conductor in an orchestra — it doesn’t play music (handle visuals or logic directly), but it coordinates everything.
+
+GameFlow() is a state machine — great concept to teach with flowcharts or diagrams.
+
+This file teaches how to separate game logic from visuals — which is excellent practice in Unity development.
+
+? Example Turn Flow (Student Visualization)
+css
+Copy
+Edit
+Player clicks a card ?
+Game sets selected rank ?
+OK button is pressed ?
+Game asks opponent ?
+Opponent has cards? 
+   ? YES ? Cards transferred
+   ? NO  ? Go Fish ? Draw a card
+*/

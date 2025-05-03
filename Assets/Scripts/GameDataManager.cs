@@ -173,3 +173,134 @@ namespace GoFish
         }
     }
 }
+
+/*
+?? GameDataManager.cs — Script Documentation
+Namespace: GoFish
+Purpose:
+This class manages all the game logic and data, such as:
+
+Shuffling the deck
+
+Dealing cards
+
+Drawing from the pool
+
+Detecting “books” (sets of 4 cards)
+
+Determining the winner
+
+It acts as the logic layer between the Game controller and the ProtectedData storage class.
+
+?? Class Summary
+public class GameDataManager
+Non-MonoBehaviour C# class
+
+Called and controlled entirely by Game.cs
+
+Manages stateful data through ProtectedData
+
+?? Fields
+Type	Name	Description
+Player	localPlayer, remotePlayer	Player references for logic comparison
+ProtectedData	protectedData	Secure object holding all card hands, deck, and book counts
+
+?? Constructor
+csharp
+Copy
+Edit
+public GameDataManager(Player local, Player remote)
+Accepts two Player objects
+
+Initializes a new ProtectedData instance for this game
+
+?? Core Game Logic Methods
+void Shuffle()
+Creates a list of all 52 card values (0–51)
+
+Randomizes the order using UnityEngine.Random.Range
+
+Sets this as the deck pool in ProtectedData
+
+void DealCardValuesToPlayer(Player player, int numberOfCards)
+Pulls N cards from the end of the deck pool
+
+Removes those cards from the pool
+
+Adds them to the player's hand in ProtectedData
+
+byte DrawCardValue()
+Removes and returns the last card from the pool
+
+If the pool is empty, returns a special constant: Constants.POOL_IS_EMPTY
+
+?? Card Management
+Method	Purpose
+PlayerCards(Player)	Returns list of card values for a player
+AddCardValuesToPlayer(Player, List<byte>)	Adds multiple cards to a player’s hand
+AddCardValueToPlayer(Player, byte)	Adds a single card
+RemoveCardValuesFromPlayer(Player, List<byte>)	Removes cards from a player
+TakeCardValuesWithRankFromPlayer(Player, Ranks)	Returns and removes all cards of a given rank from a player
+
+?? Book Handling
+Dictionary<Ranks, List<byte>> GetBooks(Player player)
+Checks the player's cards
+
+Finds all sets of 4 cards of the same rank
+
+Returns a dictionary: Rank ? List of 4 cards
+
+void AddBooksForPlayer(Player, int numberOfBooks)
+Adds to a player’s book count in ProtectedData
+
+?? Game Status Methods
+bool GameFinished()
+Asks ProtectedData if the game-ending condition is met
+
+Player Winner()
+Returns the player with the most books based on data in ProtectedData
+
+?? AI Method
+Ranks SelectRandomRanksFromPlayersCardValues(Player player)
+Used by the bot
+
+Selects a random card from its hand
+
+Returns the rank to ask for
+
+?? How it Works in the Game
+This class does not interact with visuals or UI.
+
+It is entirely logic-focused.
+
+All requests from Game.cs come here to evaluate outcomes:
+
+“Give me all 7s from the opponent”
+
+“Draw a card from the deck”
+
+“Who has the most books?”
+
+?? Design Highlights
+Feature	Description
+Separation of Concerns	Keeps logic separate from UI or animation
+Data Delegation	Uses ProtectedData to abstract actual card storage
+Supports AI	Has logic for random rank selection
+Expandable	Can be adapted for online play with minimal changes
+
+?? Teaching Tips
+Use this script to teach:
+
+How to shuffle and deal cards programmatically
+
+How to group and detect patterns (books = 4 same ranks)
+
+How to design clean, logic-only classes
+
+How to return custom structures like Dictionary<Ranks, List<byte>>
+
+? Sample Usage in Game.cs
+gameDataManager.Shuffle();
+gameDataManager.DealCardValuesToPlayer(player, 7);
+gameDataManager.TakeCardValuesWithRankFromPlayer(opponent, selectedRank);
+gameDataManager.GetBooks(player);*/

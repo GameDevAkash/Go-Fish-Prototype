@@ -193,3 +193,124 @@ namespace GoFish
         }
     }
 }
+
+/*
+CardAnimator.cs — Script Documentation
+Namespace: GoFish
+Purpose:
+This script handles card animation, dealing, and movement in the game. It animates how cards are created, assigned, and smoothly moved to each player's area during gameplay.
+
+It uses a queue-based system so that card movements happen one after the other instead of all at once.
+
+?? Class 1: CardAnimation
+A lightweight helper class that defines:
+
+Which card to move
+
+Where to move it
+
+What rotation it should end up with
+
+?? Fields:
+Type	Name	Description
+Card	card	The specific card being animated.
+Vector2	destination	The position the card should move to.
+Quaternion	rotation	The rotation the card should end up with.
+
+?? Constructors:
+public CardAnimation(Card c, Vector2 pos)
+public CardAnimation(Card c, Vector2 pos, Quaternion rot)
+First version sets position only.
+
+Second version includes rotation.
+
+?? Method:
+public bool Play()
+Smoothly animates the card's movement and rotation.
+
+Returns true when the card has reached its destination.
+
+Uses MoveTowards and Lerp for frame-by-frame motion.
+
+?? Class 2: CardAnimator
+Main controller class for managing animations and visual state of all cards in the game.
+
+?? Fields:
+Type	Name	Description
+GameObject	CardPrefab	Prefab used to instantiate card GameObjects.
+List<Card>	DisplayingCards	All cards currently in the deck or on the table.
+Queue<CardAnimation>	cardAnimations	Queue of animations to be played.
+UnityEvent	OnAllAnimationsFinished	Event fired when animation queue is empty.
+
+?? Lifecycle Methods
+Awake()
+Initializes the animation queue.
+
+Calls InitializeDeck() to generate all 52 cards.
+
+Start()
+Currently unused but available for future use.
+
+?? Core Methods
+void InitializeDeck()
+Instantiates 52 cards with CardPrefab.
+
+Spreads them out in a line using Constants.DECK_CARD_POSITION_OFFSET.
+
+Adds them to DisplayingCards.
+
+void DealDisplayingCards(Player player, int numberOfCard)
+Removes the specified number of cards from the deck.
+
+Assigns each one to the player.
+
+Queues animations to move each card to the player's hand.
+
+void DrawDisplayingCard(Player player)
+Removes one card from the deck.
+
+Assigns it to the player.
+
+Adds its animation to the queue.
+
+void DrawDisplayingCard(Player player, byte value)
+Same as above, but sets a specific card value manually (used when AI or player knows the card).
+
+?? Animation Methods
+void AddCardAnimation(Card card, Vector2 position)
+Queues a basic animation to move the card to a new position.
+
+void AddCardAnimation(Card card, Vector2 position, Quaternion rotation)
+Queues an animation to move and rotate the card.
+
+?? Update() Method (Every Frame)
+Handles processing the current animation:
+
+If there’s no active animation, pull the next from the queue.
+
+If there is one, Play() it.
+
+Once finished, start the next.
+
+If all done, trigger OnAllAnimationsFinished.
+
+void NextAnimation()
+Clears the current animation.
+
+Pulls the next one from the queue, if any.
+
+If the queue is empty and animations were in progress, raises the finished event.
+
+?? Key Teaching Concepts
+Concept	Explanation
+Animation Queue	Prevents all cards from animating at once — they move one-by-one for clarity.
+Prefab Instantiation	Dynamically creates 52 card objects in InitializeDeck().
+UnityEvent	OnAllAnimationsFinished lets other scripts know when it's safe to continue (used in Game.cs).
+Lerp/MoveTowards	Used for smooth frame-by-frame movement.
+
+?? Real-World Analogy
+Imagine a card dealer sliding cards across the table to players — one at a time. This class is that dealer. It also keeps track of which card is being dealt and makes sure it finishes before moving the next.
+
+?? Sample Usage
+cardAnimator.DealDisplayingCards(player, 7); // Give player 7 cards with animation
+cardAnimator.DrawDisplayingCard(bot);        // Bot draws a card*/
